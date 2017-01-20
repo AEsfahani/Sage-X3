@@ -1,0 +1,1555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="f8af864d-5b96-467d-891d-3f141d168a3c" activeEnvironment="Default" name="PU9P4 10.10.41.92" resourceRoot="" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="644b29c2-dfea-4b01-8bf5-46854182199a" wsaVersion="NONE" name="CAdxWebServiceXmlCCSoapBinding" type="wsdl" bindingName="{http://www.adonix.com/WSS}CAdxWebServiceXmlCCSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://10.10.41.92:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.10.41.92:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl"><con:part><con:url>http://10.10.41.92:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.adonix.com/WSS" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wss="http://www.adonix.com/WSS" xmlns:intf="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--WSDL created by Apache Axis version: 1.4 Built on Apr 22, 2006 (06:55:48 PDT)-->
+  <wsdl:types>
+    <schema targetNamespace="http://www.adonix.com/WSS" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <complexType name="CAdxCallContext">
+        <sequence>
+          <element name="codeLang" nillable="true" type="xsd:string"/>
+          <element name="poolAlias" nillable="true" type="xsd:string"/>
+          <element name="poolId" nillable="true" type="xsd:string"/>
+          <element name="requestConfig" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="CAdxMessage">
+        <sequence>
+          <element name="message" nillable="true" type="xsd:string"/>
+          <element name="type" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="ArrayOfCAdxMessage">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="wss:CAdxMessage[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="CAdxTechnicalInfos">
+        <sequence>
+          <element name="busy" type="xsd:boolean"/>
+          <element name="changeLanguage" type="xsd:boolean"/>
+          <element name="changeUserId" type="xsd:boolean"/>
+          <element name="flushAdx" type="xsd:boolean"/>
+          <element name="loadWebsDuration" type="xsd:double"/>
+          <element name="nbDistributionCycle" type="xsd:int"/>
+          <element name="poolDistribDuration" type="xsd:double"/>
+          <element name="poolEntryIdx" type="xsd:int"/>
+          <element name="poolExecDuration" type="xsd:double"/>
+          <element name="poolRequestDuration" type="xsd:double"/>
+          <element name="poolWaitDuration" type="xsd:double"/>
+          <element name="processReport" nillable="true" type="xsd:string"/>
+          <element name="processReportSize" type="xsd:int"/>
+          <element name="reloadWebs" type="xsd:boolean"/>
+          <element name="resumitAfterDBOpen" type="xsd:boolean"/>
+          <element name="rowInDistribStack" type="xsd:int"/>
+          <element name="totalDuration" type="xsd:double"/>
+          <element name="traceRequest" nillable="true" type="xsd:string"/>
+          <element name="traceRequestSize" type="xsd:int"/>
+        </sequence>
+      </complexType>
+      <complexType name="CAdxResultXml">
+        <sequence>
+          <element name="messages" nillable="true" type="wss:ArrayOfCAdxMessage"/>
+          <element name="resultXml" nillable="true" type="xsd:string"/>
+          <element name="status" type="xsd:int"/>
+          <element name="technicalInfos" nillable="true" type="wss:CAdxTechnicalInfos"/>
+        </sequence>
+      </complexType>
+      <complexType name="CAdxParamKeyValue">
+        <sequence>
+          <element name="key" nillable="true" type="xsd:string"/>
+          <element name="value" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="ArrayOfCAdxParamKeyValue">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="wss:CAdxParamKeyValue[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOf_xsd_string">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="queryRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+    <wsdl:part name="listSize" type="xsd:int"/>
+  </wsdl:message>
+  <wsdl:message name="insertLinesResponse">
+    <wsdl:part name="insertLinesReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="getDataXmlSchemaResponse">
+    <wsdl:part name="getDataXmlSchemaReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="actionObjectKeysResponse">
+    <wsdl:part name="actionObjectKeysReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="deleteRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+  </wsdl:message>
+  <wsdl:message name="runRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="inputXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="runResponse">
+    <wsdl:part name="runReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="queryResponse">
+    <wsdl:part name="queryReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="insertLinesRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+    <wsdl:part name="blocKey" type="xsd:string"/>
+    <wsdl:part name="lineKey" type="xsd:string"/>
+    <wsdl:part name="lineXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getDescriptionResponse">
+    <wsdl:part name="getDescriptionReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="deleteLinesRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+    <wsdl:part name="blocKey" type="xsd:string"/>
+    <wsdl:part name="lineKeys" type="wss:ArrayOf_xsd_string"/>
+  </wsdl:message>
+  <wsdl:message name="getDataXmlSchemaRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="actionObjectRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="actionCode" type="xsd:string"/>
+    <wsdl:part name="objectXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="modifyRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+    <wsdl:part name="objectXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="saveResponse">
+    <wsdl:part name="saveReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="getDescriptionRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="actionObjectKeysRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="actionCode" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+  </wsdl:message>
+  <wsdl:message name="deleteLinesResponse">
+    <wsdl:part name="deleteLinesReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="actionObjectResponse">
+    <wsdl:part name="actionObjectReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part name="deleteReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="saveRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="readRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+  </wsdl:message>
+  <wsdl:message name="readResponse">
+    <wsdl:part name="readReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="modifyResponse">
+    <wsdl:part name="modifyReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:portType name="CAdxWebServiceXmlCC">
+    <wsdl:operation name="run" parameterOrder="callContext publicName inputXml">
+      <wsdl:input message="wss:runRequest" name="runRequest"/>
+      <wsdl:output message="wss:runResponse" name="runResponse"/>
+      <wsdl:documentation>Run X3 sub program</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="save" parameterOrder="callContext publicName objectXml">
+      <wsdl:input message="wss:saveRequest" name="saveRequest"/>
+      <wsdl:output message="wss:saveResponse" name="saveResponse"/>
+      <wsdl:documentation>Create X3 object</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="delete" parameterOrder="callContext publicName objectKeys">
+      <wsdl:input message="wss:deleteRequest" name="deleteRequest"/>
+      <wsdl:output message="wss:deleteResponse" name="deleteResponse"/>
+      <wsdl:documentation>Delete X3 object</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="read" parameterOrder="callContext publicName objectKeys">
+      <wsdl:input message="wss:readRequest" name="readRequest"/>
+      <wsdl:output message="wss:readResponse" name="readResponse"/>
+      <wsdl:documentation>Read X3 object</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="query" parameterOrder="callContext publicName objectKeys listSize">
+      <wsdl:input message="wss:queryRequest" name="queryRequest"/>
+      <wsdl:output message="wss:queryResponse" name="queryResponse"/>
+      <wsdl:documentation>Get X3 objects list</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="getDescription" parameterOrder="callContext publicName">
+      <wsdl:input message="wss:getDescriptionRequest" name="getDescriptionRequest"/>
+      <wsdl:output message="wss:getDescriptionResponse" name="getDescriptionResponse"/>
+      <wsdl:documentation>Get X3 web service description regarding publication done in GESAWE</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="modify" parameterOrder="callContext publicName objectKeys objectXml">
+      <wsdl:input message="wss:modifyRequest" name="modifyRequest"/>
+      <wsdl:output message="wss:modifyResponse" name="modifyResponse"/>
+      <wsdl:documentation>Update X3 object</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="actionObject" parameterOrder="callContext publicName actionCode objectXml">
+      <wsdl:input message="wss:actionObjectRequest" name="actionObjectRequest"/>
+      <wsdl:output message="wss:actionObjectResponse" name="actionObjectResponse"/>
+      <wsdl:documentation>Execute specific action on X3 object providing XML flow</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="actionObjectKeys" parameterOrder="callContext publicName actionCode objectKeys">
+      <wsdl:input message="wss:actionObjectKeysRequest" name="actionObjectKeysRequest"/>
+      <wsdl:output message="wss:actionObjectKeysResponse" name="actionObjectKeysResponse"/>
+      <wsdl:documentation>Execute specific action on X3 object providing keys</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="getDataXmlSchema" parameterOrder="callContext publicName">
+      <wsdl:input message="wss:getDataXmlSchemaRequest" name="getDataXmlSchemaRequest"/>
+      <wsdl:output message="wss:getDataXmlSchemaResponse" name="getDataXmlSchemaResponse"/>
+      <wsdl:documentation>Get X3 web service schema regarding publication done in GESAWE</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="insertLines" parameterOrder="callContext publicName objectKeys blocKey lineKey lineXml">
+      <wsdl:input message="wss:insertLinesRequest" name="insertLinesRequest"/>
+      <wsdl:output message="wss:insertLinesResponse" name="insertLinesResponse"/>
+      <wsdl:documentation>NOT YET IMPLEMENTED !!!</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="deleteLines" parameterOrder="callContext publicName objectKeys blocKey lineKeys">
+      <wsdl:input message="wss:deleteLinesRequest" name="deleteLinesRequest"/>
+      <wsdl:output message="wss:deleteLinesResponse" name="deleteLinesResponse"/>
+      <wsdl:documentation>Remove lines from X3 object table</wsdl:documentation>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CAdxWebServiceXmlCCSoapBinding" type="wss:CAdxWebServiceXmlCC">
+    <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="run">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="runRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="runResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="save">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="saveRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="saveResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="deleteRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="readRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="readResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="query">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="queryRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="queryResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDescription">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getDescriptionRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="getDescriptionResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modify">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="modifyRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="modifyResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actionObject">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="actionObjectRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="actionObjectResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actionObjectKeys">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="actionObjectKeysRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="actionObjectKeysResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDataXmlSchema">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getDataXmlSchemaRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="getDataXmlSchemaResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertLines">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="insertLinesRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="insertLinesResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteLines">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="deleteLinesRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="deleteLinesResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CAdxWebServiceXmlCCService">
+    <wsdl:port binding="wss:CAdxWebServiceXmlCCSoapBinding" name="CAdxWebServiceXmlCC">
+      <wsdlsoap:address location="http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"/>
+    </wsdl:port>
+    <wsdl:documentation>This SOAP web service allows to call X3 sub programs and/or to manipulate X3 objects trough CRUD and specifics methods</wsdl:documentation>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint></con:endpoints><con:operation id="1f71be93-05d5-41f2-8032-574b9ec7108e" isOneWay="false" action="" name="actionObject" bindingOperationName="actionObject" type="Request-Response" outputName="actionObjectResponse" inputName="actionObjectRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="64700008-d276-4fa5-b4c4-34526c879fe8" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:actionObject soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <actionCode xsi:type="xsd:string">?</actionCode>\r
+         <objectXml xsi:type="xsd:string">?</objectXml>\r
+      </wss:actionObject>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/actionObjectRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="20d30460-6b19-4a87-97b9-6f1d0f3cab40" isOneWay="false" action="" name="actionObjectKeys" bindingOperationName="actionObjectKeys" type="Request-Response" outputName="actionObjectKeysResponse" inputName="actionObjectKeysRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8dacce3f-79de-4581-b943-ad72df22bb03" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:actionObjectKeys soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <actionCode xsi:type="xsd:string">?</actionCode>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+      </wss:actionObjectKeys>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/actionObjectKeysRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="d1e6d244-2f02-4d09-a6dc-f161eb760d43" isOneWay="false" action="" name="delete" bindingOperationName="delete" type="Request-Response" outputName="deleteResponse" inputName="deleteRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cb083b8b-135b-4d34-9858-c8fd77e23154" name="DELETE ITM"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>[RAW016, RAW015]</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="2d0f07c1-83f2-42a2-8bbc-2b8881b70009" isOneWay="false" action="" name="deleteLines" bindingOperationName="deleteLines" type="Request-Response" outputName="deleteLinesResponse" inputName="deleteLinesRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="65238b59-7058-4599-b8b6-8711a6c8d02a" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:deleteLines soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+         <blocKey xsi:type="xsd:string">?</blocKey>\r
+         <lineKeys xsi:type="wss:ArrayOf_xsd_string" soapenc:arrayType="xsd:string[]"/>\r
+      </wss:deleteLines>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteLinesRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="1041bd8b-7439-42a9-99d6-43a04ee7104e" isOneWay="false" action="" name="getDataXmlSchema" bindingOperationName="getDataXmlSchema" type="Request-Response" outputName="getDataXmlSchemaResponse" inputName="getDataXmlSchemaRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f9721fd3-ad95-4629-923c-d65cf0a9fdcd" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:getDataXmlSchema soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+      </wss:getDataXmlSchema>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/getDataXmlSchemaRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e84e8a10-44bb-4912-852e-021df0bca568" isOneWay="false" action="" name="getDescription" bindingOperationName="getDescription" type="Request-Response" outputName="getDescriptionResponse" inputName="getDescriptionRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fdf04323-e064-42a0-8c9d-7e19bb0450aa" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:getDescription soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+      </wss:getDescription>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/getDescriptionRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="65bfa327-1231-444d-a101-763d1b44c036" isOneWay="false" action="" name="insertLines" bindingOperationName="insertLines" type="Request-Response" outputName="insertLinesResponse" inputName="insertLinesRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fecaa30a-8a0b-4a47-aaf1-d99d46205d10" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:insertLines soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+         <blocKey xsi:type="xsd:string">?</blocKey>\r
+         <lineKey xsi:type="xsd:string">?</lineKey>\r
+         <lineXml xsi:type="xsd:string">?</lineXml>\r
+      </wss:insertLines>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/insertLinesRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="467c3235-948a-4041-808e-867e4889c52d" isOneWay="false" action="" name="modify" bindingOperationName="modify" type="Request-Response" outputName="modifyResponse" inputName="modifyRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3fde34e9-d497-4061-b1b4-3d6a858036e2" name="Modify BPRNAM"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:modify soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">adxwss.beautify=true</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">BPC</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+         <key>BPCNUM</key>
+         <value>AO001</value>
+         </objectKeys>\r
+         <objectXml xsi:type="xsd:string">
+  <![CDATA[<PARAM>
+<GRP ID="BPRC_1">
+<FLD NAME="BPRNAM" TYPE="Char">Luanda BTT - CK</FLD>
+</GRP>
+</PARAM>]]]]>><![CDATA[
+    
+         </objectXml>\r
+      </wss:modify>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/modifyRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="c3213fb0-a782-4d5c-a123-948ac95945fa" isOneWay="false" action="" name="query" bindingOperationName="query" type="Request-Response" outputName="queryResponse" inputName="queryRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="40b384fd-ce68-4503-9448-252645415536" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:query soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">adwss.beautify=true</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ICD</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+         <listSize xsi:type="xsd:int">10</listSize>\r
+      </wss:query>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/queryRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e17a8f76-f9c9-475e-b909-b9ab3b233fbc" isOneWay="false" action="" name="read" bindingOperationName="read" type="Request-Response" outputName="readResponse" inputName="readRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8406056f-22dc-430e-8fa9-25c061585329" name="ReadAO001"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:read soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string"></requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">BPC</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+       
+         
+         {"BPCNUM":"AO001"}
+         
+          </objectKeys>
+       \r
+      </wss:read>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/readRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="93f4435b-fe6a-462a-8dff-f4a29f1a606b" name="Read SRH"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:read soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">AST_SRH</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+         <key>SRHNUM</key>
+         <value>SRH-PT03115/00000002</value>
+         </objectKeys>
+      </wss:read>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/readRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="65821453-7e4d-4e03-9851-8e741d3afecb" name="Read SOH"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:read soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <callContext xsi:type="wss:CAdxCallContext">
+            <codeLang xsi:type="xsd:string">ENG</codeLang>
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>
+            <poolId xsi:type="xsd:string">?</poolId>
+            <requestConfig xsi:type="xsd:string">adxwss.beautify=true</requestConfig>
+         </callContext>
+         <publicName xsi:type="xsd:string">SOH</publicName>
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+         <key>SOHNUM</key>
+         <value>SONNA0120318</value>
+         </objectKeys>
+      </wss:read>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/readRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="bcac22b6-a115-494c-88bd-c61dcbc52958" isOneWay="false" action="" name="run" bindingOperationName="run" type="Request-Response" outputName="runResponse" inputName="runRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="809c4d77-a86a-45e4-b4ff-9a75a4c1b8d1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:run soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <inputXml xsi:type="xsd:string">?</inputXml>\r
+      </wss:run>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/runRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e3639d89-8d26-4448-b83b-a494611e9b16" isOneWay="false" action="" name="save" bindingOperationName="save" type="Request-Response" outputName="saveResponse" inputName="saveRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4ca9898f-3cb5-4705-9c3e-bdc9f3ea1ab4" name="CreateBPC"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">adxwss.beautify=true</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">BPC</publicName>\r
+         <objectXml xsi:type="xsd:string">
+<![CDATA[<PARAM>
+	<GRP ID="BPC0_1" >
+	<FLD NAME="BCGCOD" TYPE="Char" >US</FLD>
+	<FLD NAME="BPCNUM" TYPE="Char" >NA340</FLD>
+	</GRP>
+	<TAB DIM="30" ID="BPAC_1" SIZE="1" >
+	<LIN NUM="1" >
+	<FLD NAME="CODADR" TYPE="Char" >CORP</FLD>
+	<FLD NAME="POSCOD" TYPE="Char" >30096</FLD>
+	<FLD NAME="CTY" TYPE="Char" >DULUTH</FLD>
+	<FLD MENULAB="Yes" MENULOCAL="1" NAME="BPAADDFLG" TYPE="Integer" >1</FLD>
+	</LIN>
+		<LIN NUM="2" >
+	<FLD NAME="CODADR" TYPE="Char" >CORP1</FLD>
+	<FLD NAME="POSCOD" TYPE="Char" >30096</FLD>
+	<FLD NAME="CTY" TYPE="Char" >DULUTH</FLD>
+	<FLD MENULAB="Yes" MENULOCAL="1" NAME="BPAADDFLG" TYPE="Integer" >1</FLD>
+	</LIN>
+		<LIN NUM="3" >
+	<FLD NAME="CODADR" TYPE="Char" >CORP2</FLD>
+	<FLD NAME="POSCOD" TYPE="Char" >30096</FLD>
+	<FLD NAME="CTY" TYPE="Char" >DULUTH</FLD>
+	<FLD MENULAB="Yes" MENULOCAL="1" NAME="BPAADDFLG" TYPE="Integer" >1</FLD>
+	</LIN>
+		<LIN NUM="4" >
+	<FLD NAME="CODADR" TYPE="Char" >CORP3</FLD>
+	<FLD NAME="POSCOD" TYPE="Char" >30096</FLD>
+	<FLD NAME="CTY" TYPE="Char" >DULUTH</FLD>
+	<FLD MENULAB="Yes" MENULOCAL="1" NAME="BPAADDFLG" TYPE="Integer" >1</FLD>
+	</LIN>
+		<LIN NUM="5" >
+	<FLD NAME="CODADR" TYPE="Char" >CORP4</FLD>
+	<FLD NAME="POSCOD" TYPE="Char" >30096</FLD>
+	<FLD NAME="CTY" TYPE="Char" >DULUTH</FLD>
+	<FLD MENULAB="Yes" MENULOCAL="1" NAME="BPAADDFLG" TYPE="Integer" >2</FLD>
+	</LIN>
+	</TAB>
+	<GRP ID="BPC3_2" >
+	<FLD NAME="VACBPR" TYPE="Char" >NTX</FLD>
+	</GRP>
+	<TAB DIM="30" ID="BPC4_1" SIZE="1">
+	<LIN>
+	<FLD NAME="BPAADD" TYPE="Char">CORP</FLD>
+	<FLD MENULAB="No" MENULOCAL="1" NAME="BPDADDFLG" TYPE="Integer">1</FLD>
+	</LIN>
+	<LIN>
+	<FLD NAME="BPAADD" TYPE="Char">CORP1</FLD>
+	<FLD MENULAB="Yes" MENULOCAL="1" NAME="BPDADDFLG" TYPE="Integer">1</FLD>
+	</LIN>
+	<LIN>
+	<FLD NAME="BPAADD" TYPE="Char">CORP2</FLD>
+	<FLD MENULAB="Yes" MENULOCAL="1" NAME="BPDADDFLG" TYPE="Integer">2</FLD>
+	</LIN>
+	</TAB>
+	</PARAM>]]]]>><![CDATA[
+</objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="08652cb4-0f28-4be0-bdc4-1bd641380cdd" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">adxwss.beautify=true</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">BPC</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         <![CDATA[<PARAM>
+         <GRP ID="BPC0_1">
+	<FLD NAME="BCGCOD" TYPE="Char">US</FLD>
+
+
+	</GRP>
+	<TAB ID="BPAC_1">
+	<LIN NUM="1">
+	<FLD NAME="CODADR" TYPE="Char">CORP</FLD>
+	<FLD NAME="POSCOD" TYPE="Char">85296</FLD>
+	<FLD NAME="CTY" TYPE="Char" >DULUTH</FLD>
+</LIN></TAB>
+	<GRP ID="BPC3_2" >
+
+	<FLD NAME="VACBPR" TYPE="Char" >NTX</FLD>></GRP>
+	</PARAM>]]]]>><![CDATA[ 
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="b6fc9f5b-b5e4-4687-bcbf-522c496fb850" name="ITM creation"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="48efc743-f6f8-47b3-a142-f57d179f910f" name="SOH"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>
+            <poolId xsi:type="xsd:string"></poolId>\r
+            <requestConfig xsi:type="xsd:string">adxwss.beautify=true</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">SOH</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         { 
+"SOH0_1":{"SALFCY":"NA012","BPCORD":"NA003"}, 
+"SOH2_1":{"STOFCY":"NA011"}, 
+"SOH4_1": [ 
+{"ITMREF":"DIS001","QTY":"1"}, 
+{"ITMREF":"DIS002","QTY":"1"} 
+] 
+}  
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call id="e74bda4f-9069-49ce-8cbc-77b3ff4c384b" name="SOHXML"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <callContext xsi:type="wss:CAdxCallContext">
+            <codeLang xsi:type="xsd:string">ENG</codeLang>
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>
+            <poolId xsi:type="xsd:string"></poolId>
+            <requestConfig xsi:type="xsd:string">adxwss.beautify=true</requestConfig>
+         </callContext>
+         <publicName xsi:type="xsd:string">SOH</publicName>
+         <objectXml xsi:type="xsd:string">
+<![CDATA[<PARAM>
+	<GRP ID="SOH0_1">
+		<FLD NAME="SALFCY" TYPE="Char">NA012</FLD>
+		<FLD NAME="ZSALFCY" TYPE="Char">Bike &amp; Toy Products</FLD>
+		<FLD NAME="SOHTYP" TYPE="Char">SON</FLD>
+		<FLD NAME="ZSOHTYP" TYPE="Char">Normal</FLD>
+		<FLD NAME="SOHNUM" TYPE="Char"></FLD>
+		<FLD NAME="REVNUM" TYPE="Integer">0</FLD>
+		<FLD NAME="CUSORDREF" TYPE="Char"/>
+		<FLD NAME="ORDDAT" TYPE="Date">20170118</FLD>
+		<FLD NAME="CUR" TYPE="Char">USD</FLD>
+		<FLD NAME="ZCUR" TYPE="Char">US Dollar</FLD>
+		<FLD NAME="BPCORD" TYPE="Char">NA003</FLD>
+		<FLD NAME="BPCNAM" TYPE="Char">Fun Times Stores</FLD>
+		<FLD NAME="W1" TYPE="Char"/>
+		<FLD NAME="WSOHCAT" TYPE="Char"/>
+	</GRP>
+
+	<TAB DIM="1002" ID="SOH4_1" SIZE="2">
+		<LIN NUM="1">
+			<FLD NAME="NUMLIG" TYPE="Integer">0</FLD>
+			<FLD NAME="ITMREF" TYPE="Char">DIS001</FLD>
+			<FLD NAME="ITMDES" TYPE="Char">Standard keyboard</FLD>
+			<FLD NAME="DSTOFCY" TYPE="Char">NA011</FLD>
+			<FLD NAME="SAU" TYPE="Char">UN</FLD>
+			<FLD NAME="QTY" TYPE="Decimal">1</FLD>
+			<FLD NAME="SAUSTUCOE" TYPE="Decimal">1</FLD>
+			<FLD NAME="WALLQTY" TYPE="Decimal">0</FLD>
+			<FLD NAME="TDLQTY" TYPE="Decimal">0</FLD>
+			<FLD NAME="GROPRI" TYPE="Decimal">18</FLD>
+			<FLD NAME="DISCRGVAL1" TYPE="Decimal">0</FLD>
+			<FLD NAME="DISCRGVAL2" TYPE="Decimal">0</FLD>
+			<FLD NAME="DISCRGVAL3" TYPE="Decimal">0</FLD>
+			<FLD NAME="DISCRGVAL4" TYPE="Decimal">0</FLD>
+			<FLD NAME="DISCRGVAL5" TYPE="Decimal">0</FLD>
+			<FLD NAME="DISCRGVAL6" TYPE="Decimal">0</FLD>
+			<FLD NAME="CPRPRI" TYPE="Decimal">9.97</FLD>
+			<FLD NAME="PFM" TYPE="Decimal">8.03</FLD>
+			<FLD NAME="VACITM1" TYPE="Char">NOR</FLD>
+			<FLD NAME="VACITM2" TYPE="Char"/>
+			<FLD NAME="VACITM3" TYPE="Char"/>
+			<FLD NAME="SSTCOD" TYPE="Char"/>
+			<FLD NAME="PCKCAP" TYPE="Decimal">0</FLD>
+			<FLD NAME="BPCSALPRI" TYPE="Decimal">0</FLD>
+			<FLD NAME="DEMDLVHOU" TYPE="Char">1509</FLD>
+			<FLD NAME="MAXDLVDAT" TYPE="Date"></FLD>
+			<FLD NAME="MAXDLVHOU" TYPE="Char">1509</FLD>
+			<FLD NAME="USELIMDAT" TYPE="Date"></FLD>
+			<FLD NAME="CCE1" TYPE="Char"/>
+			<FLD NAME="CCE2" TYPE="Char">RETAILS</FLD>
+			<FLD NAME="CCE3" TYPE="Char">114</FLD>
+			<FLD NAME="CCE4" TYPE="Char"/>
+			<FLD NAME="CCE5" TYPE="Char"/>
+			<FLD NAME="CCE6" TYPE="Char"/>
+			<FLD NAME="CCE7" TYPE="Char"/>
+			<FLD NAME="CCE8" TYPE="Char"/>
+			<FLD NAME="CCE9" TYPE="Char"/>
+			<FLD NAME="CCE10" TYPE="Char"/>
+			<FLD NAME="CCE11" TYPE="Char"/>
+			<FLD NAME="CCE12" TYPE="Char"/>
+			<FLD NAME="CCE13" TYPE="Char"/>
+			<FLD NAME="CCE14" TYPE="Char"/>
+			<FLD NAME="CCE15" TYPE="Char"/>
+			<FLD NAME="CCE16" TYPE="Char"/>
+			<FLD NAME="CCE17" TYPE="Char"/>
+			<FLD NAME="CCE18" TYPE="Char"/>
+			<FLD NAME="CCE19" TYPE="Char"/>
+			<FLD NAME="CCE20" TYPE="Char"/>
+			<FLD MENULAB="Stock" MENULOCAL="445" NAME="FMI" TYPE="Integer">1</FLD>
+			<FLD NAME="LINPFM" TYPE="Decimal">8.03</FLD>
+		</LIN>
+		<LIN NUM="2">
+			<FLD NAME="NUMLIG" TYPE="Integer">0</FLD>
+			<FLD NAME="ITMREF" TYPE="Char">DIS002</FLD>
+			<FLD NAME="ITMDES" TYPE="Char">Cordless standard keyboard</FLD>
+			<FLD NAME="DSTOFCY" TYPE="Char">NA011</FLD>
+			<FLD NAME="SAU" TYPE="Char">UN</FLD>
+			<FLD NAME="QTY" TYPE="Decimal">1</FLD>
+			<FLD NAME="SAUSTUCOE" TYPE="Decimal">1</FLD>
+			<FLD NAME="WALLQTY" TYPE="Decimal">0</FLD>
+			<FLD NAME="TDLQTY" TYPE="Decimal">0</FLD>
+			<FLD NAME="GROPRI" TYPE="Decimal">24</FLD>
+			<FLD NAME="DISCRGVAL1" TYPE="Decimal">ALI</FLD>
+			<FLD NAME="DISCRGVAL2" TYPE="Decimal">0</FLD>
+			<FLD NAME="DISCRGVAL3" TYPE="Decimal">0</FLD>
+			<FLD NAME="DISCRGVAL4https://sagecity.na.sage.com/support_communities/sage_erp_x3/b/sageerp_x3_product_support_blog/archive/2016/12/08/sage-x3-support-changes-coming-in-2017https://sagecity.na.sage.com/support_communities/sage_erp_x3/b/sageerp_x3_product_support_blog/archive/2016/12/08/sage-x3-support-changes-coming-in-2017https://sagecity.na.sage.com/support_communities/sage_erp_x3/b/sageerp_x3_product_support_blog/archive/2016/12/08/sage-x3-support-changes-coming-in-2017" TYPE="Decimal">0</FLD>
+			<FLD NAME="DISCRGVAL5" TYPE="Decimal">0</FLD>
+			<FLD NAME="DISCRGVAL6" TYPE="Decimal">0</FLD>
+			<FLD NAME="CPRPRI" TYPE="Decimal">13.32</FLD>
+			<FLD NAME="PFM" TYPE="Decimal">10.68</FLD>
+			<FLD NAME="VACITM1" TYPE="Char">NOR</FLD>
+			<FLD NAME="VACITM2" TYPE="Char"/>
+			<FLD NAME="VACITM3" TYPE="Char"/>
+			<FLD NAME="SSTCOD" TYPE="Char"/>
+			<FLD NAME="PCKCAP" TYPE="Decimal">0</FLD>
+			<FLD NAME="BPCSALPRI" TYPE="Decimal">0</FLD>
+			<FLD NAME="DEMDLVHOU" TYPE="Char">1509</FLD>
+			<FLD NAME="MAXDLVDAT" TYPE="Date"></FLD>
+			<FLD NAME="MAXDLVHOU" TYPE="Char">1509</FLD>
+			<FLD NAME="USELIMDAT" TYPE="Date"></FLD>
+			<FLD NAME="CCE1" TYPE="Char"/>
+			<FLD NAME="CCE2" TYPE="Char">RETAILS</FLD>
+			<FLD NAME="CCE3" TYPE="Char">114</FLD>
+			<FLD NAME="CCE4" TYPE="Char"/>
+			<FLD NAME="CCE5" TYPE="Char"/>
+			<FLD NAME="CCE6" TYPE="Char"/>
+			<FLD NAME="CCE7" TYPE="Char"/>
+			<FLD NAME="CCE8" TYPE="Char"/>
+			<FLD NAME="CCE9" TYPE="Char"/>
+			<FLD NAME="CCE10" TYPE="Char"/>
+			<FLD NAME="CCE11" TYPE="Char"/>
+			<FLD NAME="CCE12" TYPE="Char"/>
+			<FLD NAME="CCE13" TYPE="Char"/>
+			<FLD NAME="CCE14" TYPE="Char"/>
+			<FLD NAME="CCE15" TYPE="Char"/>
+			<FLD NAME="CCE16" TYPE="Char"/>
+			<FLD NAME="CCE17" TYPE="Char"/>
+			<FLD NAME="CCE18" TYPE="Char"/>
+			<FLD NAME="CCE19" TYPE="Char"/>
+			<FLD NAME="CCE20" TYPE="Char"/>
+			<FLD MENULAB="Stock" MENULOCAL="445" NAME="FMI" TYPE="Integer">1</FLD>
+			<FLD NAME="LINPFM" TYPE="Decimal">10.68</FLD>
+		</LIN>
+	</TAB>
+</PARAM>]]]]>><![CDATA[
+         </objectXml>
+      </wss:save>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="d7a30442-4fce-40ff-ab8c-eed4feb10d67" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="ac200344-56a5-4ca1-a969-70e972a68abd" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase  - Delete" searchProperties="true"><con:settings/><con:testStep type="request" id="0ab7bdd5-2325-45ce-9ee8-0ec115c9755f" name="delete - DELETE ITM"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="90b0435a-988e-4962-b8ff-0ba3b2587cff"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="cb1aa131-591c-4b4f-afe9-e6b96e1a00bf" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="b4cbe109-3391-4af6-b66f-6cfd29a9e7e2" name="delete - DELETE ITM 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="74b5d466-e49a-44b0-af65-eb9f8e0d7ef4"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="684db0b1-903c-4f3e-ace3-42faa511a157" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="a3fe812f-e8d9-48d3-9ecd-e0521bb3f66e" name="delete - DELETE ITM 2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM 2" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="14d40f72-5f25-423f-9814-136952214eb6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c0aed7c8-cdea-4fb7-a58d-043142d6edd9" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="a61239e4-7aec-4691-bf59-381ccbf57b3b" name="delete - DELETE ITM 3"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM 3" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="9c4652c6-cd20-4f07-a236-7d9bfa51c15a"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="aa02c2a2-e4c7-4e70-9bcd-d027e45f24ee" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="bb91dd57-7b07-4ffb-9c27-e06f873f22b6" name="delete - DELETE ITM 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="973232b2-da9c-4597-abd7-eff0c252e0d6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="8f40a503-c9c3-442e-a20d-aa3e0a689748" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="49ed9d86-3e23-403d-982e-9744865bb9cc" name="delete - DELETE ITM 5"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM 5" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="c806b74c-6303-4061-a6b2-630a167c79cc"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="9d538e16-3091-4dc8-8f87-3076e3d2ef93" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="9a1ac8e7-0bce-47dd-b78d-653573e27e0b" name="delete - DELETE ITM 6"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM 6" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="5efb5c7f-d00d-46b9-9296-1fdf1bbf54d1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c4dab3d6-83ae-4a6b-a627-ed12aa706c8f" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="1440b331-2099-4b8b-89b1-33cc7b1e204a" name="delete - DELETE ITM 7"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM 7" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="229e0db5-6056-4358-80d5-a5b4e2c538c0"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="ae0cd4ec-b427-46e4-8e34-c8aaea483486" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="4e102f72-667e-4079-9167-8aaf8272003e" name="delete - DELETE ITM 8"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM 8" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="6b02d5ca-9ed2-4763-82b2-4579cdf4b038"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="e3251cad-7960-490c-b08f-8635aeba7484" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="c58c553d-faae-4171-a971-367858daa5d2" name="delete - DELETE ITM 9"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>delete</con:operation><con:request name="delete - DELETE ITM 9" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="1b9ab8ef-b407-4575-94a8-b1cb43c3c086"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+  <key>ITMREF</key>
+  <value>RAW014</value>
+  </objectKeys>
+         \r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="2d7fa9a1-6703-490e-b1e6-dc9c0f00de01" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest id="94a91cee-1879-4504-b06b-103260661073" name="LoadTest 1"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>5</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>6000</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type><con:config><testDelay>10</testDelay><randomFactor>0.5</randomFactor></con:config></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:loadTest id="4823fdbf-b5ee-4d8d-9e34-403f42bc4ec8" name="LoadTest 2"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>5</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>6000</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type><con:config><testDelay>5</testDelay><randomFactor>0.5</randomFactor></con:config></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:loadTest id="cbf83f88-0859-4396-8ca0-f00ed075eb59" name="LoadTest 3"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>5</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="966b4026-818d-4629-8ab7-49dab1b8c63c" name="ITM"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="2e8dd5ef-da03-4e02-a594-700f517b7107" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" id="228a0cd3-be03-41c0-a4d5-d282687f77d6" name="save - ITM creation"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="save - ITM creation" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="65bcb855-81b5-4ed7-8074-957e243bf79f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="3acb4810-019a-4765-a4ca-b581ec34e40d" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="de5d73c5-ebdb-44ed-af5d-535e0a61b1f9" name="save - ITM creation 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="save - ITM creation 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="6f2543e4-d5d6-4606-b4ba-b53e8bc400af" name="Copy of save - ITM creation 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of save - ITM creation 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="7b4245c8-0f8b-4135-a94f-482b3556d6e0" name="Copy of save - ITM creation 1 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of save - ITM creation 1 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="6470d926-4618-43ef-b7a0-64d6e0fee949" name="Copy of save - ITM creation 1 2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of save - ITM creation 1 2" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="6916524f-9a4b-4a3f-ac3c-389698790d63" name="Copy of save - ITM creation 1 3"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of save - ITM creation 1 3" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="770fcf2c-aa3a-41c5-8dd8-3fc7158bcf79" name="Copy of Copy of save - ITM creation 1 3"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of save - ITM creation 1 3" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="7ed5cd9b-a3d8-4a04-a918-2c45ee8b6204" name="Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="7e807b6b-0105-492f-9d97-ce8998f1bc70" name="Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="1df13f3d-db8c-44e9-87cf-dcfde36f15f3" name="Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="5690cdb5-c340-430d-83f3-3cef6447f67d" name="Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="6da829d7-ffa1-49db-9c24-e07998e5f92b" name="Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="87f24fbc-bbdc-4a02-a6c8-3a74e9a5d3b7" name="Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="bb51f2c5-c2c3-4aaf-bf14-bfbe49187c9b" name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="d5266057-88ec-46e1-b5bd-ad05b2ca2df7" name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="09bcd987-72e2-4263-b17d-dddcbc6bbf4d" name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="7fd3389b-b43e-42fd-b6bd-97e3ec086e31" name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="3a0b4ed1-0277-4d83-8bf7-a0336cb0a52e" name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="cbf07e84-b0d1-40fb-b42f-be7cb5b42141" name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="f34f1d8e-62b9-49a6-a15d-443670b76eaa" name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of save - ITM creation 1 4" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest id="6a4e9450-1fd2-4e7b-8f70-869c979b4e6d" name="LoadTest 1"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>10</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>6000</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Burst</con:type><con:config><burstDelay>5000</burstDelay><burstDuration>20000</burstDuration></con:config></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="dbfab1bb-46d1-4540-aaf7-dfade5c3481d" name="Copy of ITM"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="9fe88f5c-05cb-4d63-b431-4c4c2ede0628" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" id="8e788210-bacc-4d17-b7f6-86ab5b2809f6" name="save - ITM creation"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="save - ITM creation" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="65bcb855-81b5-4ed7-8074-957e243bf79f"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="3acb4810-019a-4765-a4ca-b581ec34e40d" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="9deb4897-11df-440b-a3ee-18bf711a249f" name="save - ITM creation 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="save - ITM creation 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="8bd2f252-131f-4af1-a7c0-15ee1e03d6e7" name="Copy of save - ITM creation 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of save - ITM creation 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="0c4d013a-daf9-490b-b53f-aa9df48f1e99" name="Copy of save - ITM creation 1 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of save - ITM creation 1 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="5cc000b6-42ea-4a9f-8b8b-8d464e8230a7" name="Copy of save - ITM creation 1 2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of save - ITM creation 1 2" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="896935e1-ae9f-4c22-9a10-fa6c7a38bbe7" name="Copy of save - ITM creation 1 3"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of save - ITM creation 1 3" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" id="38f3fddb-ed7e-4270-8d34-4c0f6a07ec66" name="Copy of Copy of save - ITM creation 1 3"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>save</con:operation><con:request name="Copy of Copy of save - ITM creation 1 3" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="fdf415c7-3c3c-42f0-a317-81baa35b0df6"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.10.41.92:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">PU9P4</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ITM</publicName>\r
+         <objectXml xsi:type="xsd:string">
+         {
+         "ITM0_1":{"TCLCOD":"RAWMA", "DES1AXX":"WS"}
+         }
+         
+         </objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="489c57bd-9099-427b-8508-b5ede35f8908" name="SOAP Response"/><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
