@@ -1,0 +1,14 @@
+###############################
+#    Example to show how to use Timing trace in Code. 
+#    By Ali Esfahani
+#
+#
+###############################
+
+Local Char TIMING
+Local Integer ASTATUS
+############### Turn on timing
+ASTATUS = func ASYRTIMING.START("",0)
+
+############### Turn off timing. 
+ASTATUS = func ASYRTIMING.STOP(GACTX,"",1,TIMING)
