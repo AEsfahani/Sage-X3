@@ -1,0 +1,151 @@
+#<AdxTL>@(#)0.0.0.0 $Revision$ 
+Local Integer I
+Local Char REF1
+Local Integer REQRSP
+Local Char VCRNUM
+Local Char Num
+Local Char NumInput
+NumInput="DIR000046"
+
+For I=1 to 1000
+
+
+
+If !clalev([F:ZSEX])  : Local File SETXN      [ZSEX]  : Endif
+If !clalev([F:ZSE2])  : Local File SETXN      [ZSE2]  : Endif
+If !clalev([F:ZSEU])  : Local File SEAUTH     [ZSEU]  : Endif
+If !clalev([F:ZSE3])  : Local File SEAUTH     [ZSE3]  : Endif
+
+#########################
+## Let's read the record
+##########################
+Filter [ZSEX] Where REF1='DIR000023' and REQRSP=1
+Read [ZSEX] First
+Filter [ZSEX]
+If fstat
+# Not found
+ GERR = 1
+ GMESSAGE = "Invoice with that reference DIR000023 not found\!"
+  End
+Endif
+
+##############################
+# Now we have the record Let's write the first record
+#############################
+
+#Call SAICAR(VER,"Enter the version no. where the folder originated from","Version no.","C",0,20,"",OK) From GESECRAN
+[F:ZSE2]=[F:ZSEX]
+[F:ZSE2]TXNID = "A1"
+#[F:ZSE2]REF1="DIR000025"
+Num = num$(val(seg$ (Numinput,4,9))+I)
+
+Num="DIR"+string$(6-len(num),"0")+Num
+#infbox(num)
+[F:ZSE2]REF1=Num
+
+Trbegin [ZSE2]
+
+Write [ZSE2]
+
+If fstat
+
+ GERR = 1
+ GMESSAGE = "Could not write ZSE2"
+  End
+Endif
+
+Commit
+
+
+Raz [ZSEX]
+Filter [ZSEX] Where REF1='DIR000023' and REQRSP=2
+Read [ZSEX] First
+Filter [ZSEX]
+If fstat
+# Not found
+ GERR = 1
+ GMESSAGE = "Invoice with that reference DIR000023 not found\!"
+  End
+Endif
+[F:ZSE2]=[F:ZSEX]
+[F:ZSE2]TXNID = "A1"
+#[F:ZSE2]REF1="DIR000025"
+[F:ZSE2]REF1=Num
+Trbegin [ZSE2]
+
+Write [ZSE2]
+
+If fstat
+# Not found
+ GERR = 1
+ GMESSAGE = "Could not write ZSE2"
+  End
+Endif
+
+Commit
+
+############ Now let's write the SEU record.
+
+Filter [ZSEU] Where VCRNUM='DIR000023'
+Read [ZSEU] First
+Filter [ZSEU]
+If fstat
+# Not found
+ GERR = 1
+ GMESSAGE = "Invoice with that reference DIR000023 not found\!"
+  End
+Endif
+## NOW LETS WRITE IT.
+[F:ZSE3]=[F:ZSEU]
+#[F:ZSE3]VCRNUM="DIR000025"
+[F:ZSE3]VCRNUM=Num
+Trbegin [ZSE3]
+
+Write [ZSE3]
+
+If fstat
+
+ GERR = 1
+ GMESSAGE = "Could not write ZSE3"
+  End
+Endif
+
+Commit
+Close Local File [ZSEX]
+Close Local File [ZSE2]
+Close Local File [ZSEU]
+Close Local File [ZSE3]
+
+
+
+Next I
+
+infbox("Finished Creating the records")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
