@@ -1,0 +1,73 @@
+#<AdxTL>@(#)0.0.0.0 $Revision$
+##############################################################################
+#
+# ZKill - Script to terminate the classic sessions that are older than SESSIONAGE = 5 days.
+#         Make sure SESSIONAGE is greater than or equal to 2
+# Only Interactive process are terminated (Session Types 25 and 33) . Web services and batch tasks etc are left alone
+#
+# Written by Ali Esfahani
+##############################################################################
+# Version: V1.0 2/1/2019
+##############################################################################
+# History
+# * V1.0 : Initial release
+##############################################################################
+
+
+# Variables for printing nice spacer lines in trace
+Local Char SPACERLINE1(80), SPACERLINE2(80), SPACERLINE3(80)
+Local Date CONDATE, FRDATE
+Local Integer SESSIONAGE, COUNT
+
+SESSIONAGE = 5
+COUNT = 0
+FRDATE= date$-SESSIONAGE
+SPACERLINE1 = string$(78, "#")
+SPACERLINE2 = string$(78, "=")
+SPACERLINE3 = string$(78, "-")
+
+If !GSERVEUR
+  GTRACE="A"
+  Call OUVRE_TRACE("Classic process termination report.") From LECFIC
+Endif
+
+
+Call ECR_TRACE(SPACERLINE1, 0) From GESECRAN
+Call ECR_TRACE("Terminating all sessions that connection date is older than " - format$("D:MM[/]DD[/]YY", FRDATE),0) From GESECRAN
+Call ECR_TRACE(SPACERLINE1, 0) From GESECRAN
+Call ECR_TRACE("Classic Process Termination started @:" - time$,0) From GESECRAN
+Call ECR_TRACE(SPACERLINE1, 0) From GESECRAN
+
+
+### Loop through the ssession table.
+
+
+Gosub INIT_RQT From ASESSIONS
+WSELECT = "X3SM0.SESSIONID_0,X3SM0.FOLD_0,X3SM0.LAN_0,X3SM0.SOLUTION_0,X3SM0.SESSIONTYPE_0,"
+Gosub ADD_SELECT_RQT From ASESSIONS
+WSELECT = "X3SM0.REMOTE_0,X3SM0.PEER_0,X3SM0.SYSTEMUSER_0,X3SM0.NATURE_0,X3SM0.ALOGIN_0,"
+Gosub ADD_SELECT_RQT From ASESSIONS
+WSELECT = "X3SM0.PROCESSADX_0,X3SM0.UPDUSR_0,X3SM0.CREDATTIM_0 "
+Gosub ADD_SELECT_RQT From ASESSIONS
+
+
+For (Integer SESSIONID,Char FOLD(GLONADS),Char LAN(GLONLAN),Char SOLUTION(40),Integer SESSIONTYPE,Char REMOTE(40),
+&    Char PEER(250),Char SYSTEMUSER(250),Integer NATURE,Char ALOGIN(30),Integer PROCESSADX,Char UPDUSR(GLONAUS),Datetime CREDATTIM)
+&    From num$((GTYPDBA*2)+1)  Sql RQT_SESSION As [SYS_]
+     CONDATE = func ASYRFNC.DATE_FROM_DT([F:SYS_]CREDATTIM)
+      If  (func ASYRFNC.DATE_FROM_DT([F:SYS_]CREDATTIM) <= FRDATE) & find([F:SYS_]SESSIONTYPE,25,33)>0
+         COUNT += 1
+         Call ECR_TRACE("Terminating all process for SessionID = "-num$([F:SYS_]SESSIONID) -" and User ID = "-num$([F:SYS_]ALOGIN) -" and Connection date of = "-format$("D:MM[/]DD[/]YY", CONDATE),0)
+& From GESECRAN
+         Call KILL_ALLPROC(num$([F:SYS_]SESSIONID)) From ASESSIONS
+     Endif
+
+Next
+
+Call ECR_TRACE(SPACERLINE2, 0) From GESECRAN
+Call ECR_TRACE("Total number of Classic sessions terminated = " - num$(COUNT),0) From GESECRAN
+If !GSERVEUR
+  Call FERME_TRACE From LECFIC
+  Call LEC_TRACE From LECFIC
+Endif
+
